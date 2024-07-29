@@ -28,6 +28,19 @@ class DriverController extends BaseController
         return view('driver/list_driver', $data);
     }
 
+    //-------------------------- List Kendaraan approver Page -------------------------------------
+    public function approver_driver()
+    {
+
+        $data = [
+            'title'       => 'Daftar Driver',
+            'scrumble'    => 'Daftar Driver',
+            'list_driver' => $this->driverModel->findAll(),
+        ];
+
+        return view('driver/list_driver_approver', $data);
+    }
+
     //-------------------------- Tambah Kendaraan ------------------------------------------
     public function store()
     {

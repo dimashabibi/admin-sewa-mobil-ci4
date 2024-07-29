@@ -28,6 +28,19 @@ class KendaraanController extends BaseController
         return view('kendaraan/list_kendaraan', $data);
     }
 
+    //-------------------------- List Kendaraan Page -------------------------------------
+    public function approver_kendaraan()
+    {
+
+        $data = [
+            'title' => 'Daftar Kendaraan',
+            'scrumble' => 'Daftar Kendaraan',
+            'list_kendaraan' => $this->kendaraanModel->findAll(),
+        ];
+
+        return view('kendaraan/list_kendaraan_approver', $data);
+    }
+
     //-------------------------- Tambah Kendaraan ------------------------------------------
     public function store()
     {

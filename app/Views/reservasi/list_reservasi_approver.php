@@ -39,7 +39,7 @@
                                         <td><?= $row['tgl_peminjaman'] ?></td>
                                         <td>
                                             <?php if ($row['status'] == 'selesai') : ?>
-                                                <span class="badge badge-xs bg-dark">selesai</span>
+                                                <span class="badge badge-xs bg-primary">selesai</span>
                                             <?php elseif ($row['status'] == 'disetujui') : ?>
                                                 <span class="badge badge-sm bg-info">disetujui</span>
                                             <?php elseif ($row['status'] == 'diterima') : ?>
@@ -51,18 +51,13 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?php if ($row['status'] == 'disetujui') { ?>
+                                            <?php if ($row['status'] == 'menunggu') { ?>
                                                 <a href="#modalDetail<?= $row['id']; ?>" class="btn bg-gradient-primary" type="button" data-bs-toggle="modal" title="Detail Data">
                                                     <i class="fa fa-eye"></i></a>
-                                                <a href="#modalTerima<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-success" data-bs-toggle="modal" title="Terima">
+                                                <a href="#modalTerima<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-info" data-bs-toggle="modal" title="Setuju">
                                                     <i class="fa fa-thumbs-up"></i></a>
                                                 <a href="#modalTolak<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-danger" data-bs-toggle="modal" title="Tolak">
                                                     <i class="fa fa-thumbs-down"></i></a>
-                                            <?php } elseif ($row['status'] == 'diterima') { ?>
-                                                <a href="#modalDetail<?= $row['id']; ?>" class="btn bg-gradient-primary" type="button" data-bs-toggle="modal" title="Detail Data">
-                                                    <i class="fa fa-eye"></i></a>
-                                                <a href="#modalSelesai<?= $row['id']; ?>" class="btn bg-gradient-dark" type="button" data-bs-toggle="modal" title="Detail Data">
-                                                    <i class="fa fa-check"></i></a>
                                             <?php } else { ?>
                                                 <a href="#modalDetail<?= $row['id']; ?>" class="btn bg-gradient-primary" type="button" data-bs-toggle="modal" title="Detail Data">
                                                     <i class="fa fa-eye"></i></a>
@@ -129,8 +124,6 @@
                         <div class="col-md-2">
                             <label for="status" class="text-lg ">Status</label>
                             <?php if ($detail['status'] == 'selesai') : ?>
-                                <h5 id="status" class="border border-0 rounded-3 p-2 bg-dark text-center text-white"><?= $detail['status']; ?></h5>
-                            <?php elseif ($detail['status'] == 'setujui') : ?>
                                 <h5 id="status" class="border border-0 rounded-3 p-2 bg-info text-center text-white"><?= $detail['status']; ?></h5>
                             <?php elseif ($detail['status'] == 'diterima') : ?>
                                 <h5 id="status" class="border border-0 rounded-3 p-2 bg-success text-center text-white"><?= $detail['status']; ?></h5>
@@ -165,15 +158,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= site_url('terima_reservasi/' . $terima['id']); ?>" method="post">
+                <form action="<?= site_url('terima_reservasi_approver/' . $terima['id']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <h5>Apakah anda yakin ingin menerima reservasi ini?</h5>
+                            <h5>Apakah anda yakin ingin menyetujui reservasi ini?</h5>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn bg-gradient-success"><i class="fa fa-thubs-up"></i>Terima</button>
+                        <button type="submit" name="submit" class="btn bg-gradient-info"><i class="fa fa-thumbs-up"></i> Setuju</button>
                     </div>
                 </form>
             </div>
@@ -194,7 +187,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= site_url('tolak_reservasi/' . $tolak['id']); ?>" method="post">
+                <form action="<?= site_url('tolak_reservasi_approver/' . $tolak['id']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <h5>Apakah anda yakin ingin menolak reservasi ini?</h5>
@@ -202,36 +195,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn bg-gradient-danger"><i class="fa fa-thumbs-down"></i> Tolak</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
-<!-- end Modal Tolak -->
-
-<!-- --------------------------------------------------------- Modal Selesai ---------------------------------------------------------------- -->
-
-<?php foreach ($list_reservasi as $tolak) : ?>
-    <div class="modal fade" id="modalSelesai<?= $tolak['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Selesaikan Reservasi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="<?= site_url('selesai_reservasi/' . $tolak['id']); ?>" method="post">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <h5>Apakah semua sudah dikembalikan dan akan menyelesaikan reservasi ini?</h5>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn bg-gradient-dark"><i class="fa fa-check"></i> Selesai</button>
+                        <button type="submit" name="submit" class="btn bg-gradient-danger"><i class="fa fa-thumbs-down"></i>Tolak</button>
                     </div>
                 </form>
             </div>
