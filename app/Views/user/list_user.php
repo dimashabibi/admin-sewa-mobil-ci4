@@ -8,7 +8,9 @@
                 <div class="card-header">
                     <div class="d-inline align-items-center">
                         <h4 class="m-0 font-weight-bold text-primary"><?= $title; ?></h4>
-                        <button type="button" class="btn bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modalCreate">
+                        <!-- Tambah Data -->
+                        <button type="button" class="btn btn-md bg-gradient-primary float-end" data-bs-toggle="modal" data-bs-target="#modalCreate">
+                            <i class="fa fa-add"></i>
                             Tambah Data
                         </button>
                     </div>
@@ -21,8 +23,8 @@
                                     <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ms-2">No</th>
                                     <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">User</th>
                                     <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ps-2">Phone</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Status</th>
                                     <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Password</th>
+                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Status</th>
                                     <th class=" text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Aksi</th>
                                 </tr>
                             </thead>
@@ -44,17 +46,17 @@
                                             <p class="text-sm text-secondary mb-0"><?= $row['nohp']; ?></p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <?php if ($row['role'] == 'admin') : ?>
-                                                <span class="badge bg-gradient-info"><?= $row['role']; ?></span>
-                                            <?php else : ?>
-                                                <span class="badge bg-gradient-dark "><?= $row['role']; ?></span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class="align-middle text-center text-sm">
                                             <span class="text-secondary text-xxs font-weight-bold" style="max-width: 80px;"><?= $row['password']; ?></span>
                                         </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <?php if ($row['role'] == 'admin') : ?>
+                                                <span class="badge bg-gradient-warning"><?= $row['role']; ?></span>
+                                            <?php else : ?>
+                                                <span class="badge bg-gradient-success "><?= $row['role']; ?></span>
+                                            <?php endif; ?>
+                                        </td>
                                         <td class="align-middle">
-                                            <a href="#modalEdit<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-primary" data-bs-toggle="modal">
+                                            <a href="#modalEdit<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-info" data-bs-toggle="modal">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a href="#modalDelete<?= $row['id']; ?>" type="button" class="btn btn-xl bg-gradient-danger" data-bs-toggle="modal">
@@ -78,13 +80,13 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Input Data User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="row g-3 needs-validation" method="post" action="<?= site_url('tambah_data'); ?>">
+                <form class="row g-3 needs-validation" method="post" action="<?= site_url('tambah_user'); ?>">
                     <?php csrf_field() ?>
                     <div class="col-md-4">
                         <label for="validationCustom01" class="form-label">Nama Lengkap</label>
@@ -148,28 +150,28 @@
 
 <!-- --------------------------------------------------------- Modal Edit ---------------------------------------------------------------- -->
 
-<?php foreach ($list_user as $user) : ?>
-    <div class="modal fade" id="modalEdit<?= $user['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<?php foreach ($list_user as $edit) : ?>
+    <div class="modal fade" id="modalEdit<?= $edit['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Edit Data User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3 needs-validation" method="post" action="<?= site_url('edit_user/' . $user['id']); ?>">
+                    <form class="row g-3 needs-validation" method="post" action="<?= site_url('edit_user/' . $edit['id']); ?>">
                         <?php csrf_field() ?>
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama_user" value="<?= $user['nama_user']; ?>" required>
+                            <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama_user" value="<?= $edit['nama_user']; ?>" required>
                             <div class="valid-feedback">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label for="validationCustom02" class="form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="Username" name="username" value="<?= $user['username']; ?>" required>
+                            <input type="text" class="form-control" placeholder="Username" name="username" value="<?= $edit['username']; ?>" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -178,7 +180,7 @@
                             <label for="validationCustomUsername" class="form-label">Email</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?= $user['email']; ?>" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?= $edit['email']; ?>" required>
                                 <div class="invalid-feedback">
 
                                 </div>
@@ -194,7 +196,7 @@
 
                         <div class="col-md-3">
                             <label for="validationCustom05" class="form-label">No Handphone</label>
-                            <input type="text" inputmode="numeric" placeholder="No handphone" class="form-control" name="nohp" value="<?= $user['nohp']; ?>" required>
+                            <input type="text" inputmode="numeric" placeholder="No handphone" class="form-control" name="nohp" value="<?= $edit['nohp']; ?>" required>
                             <div class="invalid-feedback">
 
                             </div>
@@ -202,7 +204,7 @@
                         <div class="col-md-3">
                             <label for="validationCustom04" class="form-label">Role</label>
                             <select class="form-select" name="role" required>
-                                <option value="" hidden><?= $user['role']; ?></option>
+                                <option value="" hidden><?= $edit['role']; ?></option>
                                 <option value="admin">Admin</option>
                                 <option value="approver">Approver</option>
                             </select>
@@ -213,7 +215,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn bg-gradient-primary">Save changes</button>
+                    <button type="submit" name="submit" class="btn bg-gradient-info">Save changes</button>
                 </div>
                 </form>
             </div>

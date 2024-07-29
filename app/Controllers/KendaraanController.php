@@ -15,56 +15,58 @@ class KendaraanController extends BaseController
         $this->kendaraanModel = new KendaraanModel();
     }
 
-    //-------------------------- List User Page -------------------------------------
+    //-------------------------- List Kendaraan Page -------------------------------------
     public function index()
     {
 
         $data = [
-            'title' => 'Daftar User',
-            'scrumble' => 'Daftar User',
-            'list_user' => $this->kendaraanModel->findAll(),
+            'title' => 'Daftar Kendaraan',
+            'scrumble' => 'Daftar Kendaraan',
+            'list_kendaraan' => $this->kendaraanModel->findAll(),
         ];
 
         return view('kendaraan/list_kendaraan', $data);
     }
 
-    //-------------------------- Tambah User ------------------------------------------
+    //-------------------------- Tambah Kendaraan ------------------------------------------
     public function store()
     {
         $kendaraanModel = new KendaraanModel();
         $kendaraanModel->insert([
-            'nama_user' => $this->request->getVar('nama_user'),
-            'username'  => $this->request->getVar('username'),
-            'password'  => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'email'     => $this->request->getVar('email'),
-            'nohp'      => $this->request->getVar('nohp'),
-            'role'      => $this->request->getVar('role'),
+            'merk_kendaraan'  => $this->request->getVar('merk_kendaraan'),
+            'plat_nomor'      => $this->request->getVar('plat_nomor'),
+            'tipe_kendaraan'  => $this->request->getVar('tipe_kendaraan'),
+            'konsumsi_bbm'    => $this->request->getVar('konsumsi_bbm'),
+            'jadwal_service'  => $this->request->getVar('jadwal_service'),
+            'riwayat'         => $this->request->getVar('riwayat'),
+            'status'          => $this->request->getVar('status'),
         ]);
         session()->setFlashdata('success', 'Data Berhasil ditambah');
-        return redirect()->to(base_url('/list_user'));
+        return redirect()->to(base_url('/list_kendaraan'));
     }
 
-    //-------------------------- Edit User ------------------------------------------
+    //-------------------------- Edit Kendaraan ------------------------------------------
     public function edit_kendaraan($id)
     {
         $kendaraanModel = new KendaraanModel();
         $kendaraanModel->update($id, [
-            'nama_user' => $this->request->getVar('nama_user'),
-            'username'  => $this->request->getVar('username'),
-            'password'  => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'email'     => $this->request->getVar('email'),
-            'nohp'      => $this->request->getVar('nohp'),
-            'role'      => $this->request->getVar('role'),
+            'merk_kendaraan'  => $this->request->getVar('merk_kendaraan'),
+            'plat_nomor'      => $this->request->getVar('plat_nomor'),
+            'tipe_kendaraan'  => $this->request->getVar('tipe_kendaraan'),
+            'konsumsi_bbm'    => $this->request->getVar('konsumsi_bbm'),
+            'jadwal_service'  => $this->request->getVar('jadwal_service'),
+            'riwayat'         => $this->request->getVar('riwayat'),
+            'status'          => $this->request->getVar('status'),
         ]);
         session()->setFlashdata('success', 'Data berhasil diubah.');
-        return redirect()->to('/list_user');
+        return redirect()->to('/list_kendaraan');
     }
 
-    //-------------------------- Delete User ----------------------------------------
+    //-------------------------- Delete Kendaraan ----------------------------------------
     public function delete_kendaraan($id)
     {
         $this->kendaraanModel->delete($id);
         session()->setFlashdata('success', 'Data berhasil dihapus.');
-        return redirect()->to('/list_user');
+        return redirect()->to('/list_kendaraan');
     }
 }

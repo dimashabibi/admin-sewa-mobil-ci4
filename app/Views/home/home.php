@@ -1,6 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
+
 <!-- START PAGE HEADER -->
 <div class="container-fluid">
     <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -200,7 +201,7 @@
     <!-- End Top Card -->
 
     <!-- START DIAGRAM -->
-    <di v class="row mt-4">
+    <div class="row mt-4">
         <div class="col-lg-5 mb-lg-0 mb-4">
             <div class="card z-index-2">
                 <div class="card-body p-3">
@@ -333,7 +334,7 @@
                 </div>
             </div>
         </div>
-    </di>
+    </div>
     <!-- END DIAGRAM -->
 </div>
 
