@@ -19,13 +19,13 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ms-2">No</th>
-                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Kendaraan</th>
-                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ps-2 ms-2">Tipe dan Konsmsi BBM</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Jadwal Service</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Riwayat</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Status</th>
-                                    <th class=" text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Aksi</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10 ms-2">No</th>
+                                    <th class="text-uppercase text-dark text-sm font-weight-bolder opacity-10">Kendaraan</th>
+                                    <th class="text-uppercase text-dark text-sm font-weight-bolder opacity-10 ps-2 ms-2">Tipe dan Konsumsi BBM</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10">Jadwal Service</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10">Riwayat</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10">Status</th>
+                                    <th class=" text-uppercase text-dark text-sm font-weight-bolder opacity-10">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +37,7 @@
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm text-uppercase"><?= $row['merk_kendaraan']; ?></h6>
-                                                    <p class="text-xs texxt-uppercase text-secondary mb-0"><?= $row['plat_nomor']; ?></p>
+                                                    <p class="text-xs text-uppercase text-secondary mb-0"><?= $row['plat_nomor']; ?></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -237,18 +237,18 @@
 
 <!-- --------------------------------------------------------- Modal Delete ---------------------------------------------------------------- -->
 
-<?php foreach ($list_user as $delete) : ?>
+<?php foreach ($list_kendaraan as $delete) : ?>
     <div class="modal fade" id="modalDelete<?= $delete['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Hapus Data</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3 needs-validation" method="get" action="<?= site_url('delete_user/' . $delete['id']); ?>">
+                    <form class="row g-3 needs-validation" method="get" action="<?= site_url('delete_kendaraan/' . $delete['id']); ?>">
                         <?php csrf_field() ?>
                         <div class="form-group">
                             <h5>Apakah anda ingin menghapus data ini </h5>

@@ -20,24 +20,31 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ms-2">No</th>
-                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10">User</th>
-                                    <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-10 ps-2">Phone</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Password</th>
-                                    <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Status</th>
-                                    <th class=" text-uppercase text-secondary text-sm font-weight-bolder opacity-10">Aksi</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10 ">No</th>
+                                    <th class="text-uppercase text-dark text-sm font-weight-bolder opacity-10">Nama Lengkap</th>
+                                    <th class="text-uppercase text-dark text-sm font-weight-bolder opacity-10">username</th>
+                                    <th class="text-uppercase text-dark text-sm font-weight-bolder opacity-10 ps-2">Phone</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10">Password</th>
+                                    <th class="text-center text-uppercase text-dark text-sm font-weight-bolder opacity-10">Status</th>
+                                    <th class=" text-uppercase text-dark text-sm font-weight-bolder opacity-10">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
                                 <?php foreach ($list_user as $row) : ?>
                                     <tr>
-                                        <th class="align-midle text-center text-xs" scope="row"><?= $i++; ?></th>
+                                        <td class="align-midle text-center text-xs" scope="row"><?= $i++; ?></td>
                                         <td>
-                                            <div class="d-flex px-2 py-1">
+                                            <div class="d-flex px-3 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm"><?= $row['nama_user']; ?></h6>
-                                                    <p class="text-xs text-secondary mb-0"><?= $row['username']; ?></p>
+                                                    <h6 class="mb-0 text-sm text-capitalize"><?= $row['nama_user']; ?></h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-3 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm text-lowercase"><?= $row['username']; ?></h6>
                                                 </div>
                                             </div>
                                         </td>
@@ -46,7 +53,7 @@
                                             <p class="text-sm text-secondary mb-0"><?= $row['nohp']; ?></p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="text-secondary text-xxs font-weight-bold" style="max-width: 80px;"><?= $row['password']; ?></span>
+                                            <span class="text-secondary text-xs font-weight-bold" style="max-width: 80px;"><?= $row['password']; ?></span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <?php if ($row['role'] == 'admin') : ?>

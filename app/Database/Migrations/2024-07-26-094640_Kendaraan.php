@@ -27,7 +27,7 @@ class Kendaraan extends Migration
             ],
             'tipe_kendaraan'       => [
                 'type'       => 'ENUM',
-                'constraint' => ['pengangkut orang, pengangkut barang'],
+                'constraint' => ['kendaraan umum', 'pengangkut barang'],
                 'null'       => true,
             ],
             'konsumsi_bbm'       => [
@@ -43,7 +43,7 @@ class Kendaraan extends Migration
                 'type'       => 'TEXT',
                 'null'       => true,
             ],
-            'status_kendaraan'       => [
+            'status'       => [
                 'type'       => 'ENUM',
                 'constraint' => ['tersedia', 'tidak tersedia'],
                 'null'       => true,

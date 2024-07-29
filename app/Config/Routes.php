@@ -23,3 +23,15 @@ $routes->get('/list_kendaraan', 'KendaraanController::index', ['filter' => 'auth
 $routes->post('/tambah_kendaraan', 'KendaraanController::store', ['filter' => 'authFilter']);
 $routes->post('/edit_kendaraan/(:num)', 'KendaraanController::edit_kendaraan/$1', ['filter' => 'authFilter']);
 $routes->get('/delete_kendaraan/(:num)', 'KendaraanController::delete_kendaraan/$1', ['filter' => 'authFilter']);
+
+
+$routes->get('/list_driver', 'DriverController::index', ['filter' => 'authFilter']);
+$routes->post('/tambah_driver', 'DriverController::store', ['filter' => 'authFilter']);
+$routes->post('/edit_driver/(:num)', 'DriverController::edit_driver/$1', ['filter' => 'authFilter']);
+$routes->get('/delete_driver/(:num)', 'DriverController::delete_driver/$1', ['filter' => 'authFilter']);
+
+
+$routes->get('/list_reservasi', 'ReservasiController::index', ['filter' => 'authFilter']);
+$routes->post('/tambah_reservasi', 'ReservasiController::store', ['filter' => 'authFilter']);
+$routes->post('/edit_reservasi/(:num)', 'ReservasiController::edit_reservasi/$1', ['filter' => 'authFilter']);
+$routes->get('/delete_reservasi/(:num)', 'ReservasiController::delete_reservasi/$1', ['filter' => 'authFilter']);
