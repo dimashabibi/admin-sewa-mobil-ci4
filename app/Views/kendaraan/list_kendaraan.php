@@ -235,5 +235,34 @@
 <?php endforeach; ?>
 <!-- end Modal Edit -->
 
+<!-- --------------------------------------------------------- Modal Delete ---------------------------------------------------------------- -->
+
+<?php foreach ($list_user as $delete) : ?>
+    <div class="modal fade" id="modalDelete<?= $delete['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation" method="get" action="<?= site_url('delete_user/' . $delete['id']); ?>">
+                        <?php csrf_field() ?>
+                        <div class="form-group">
+                            <h5>Apakah anda ingin menghapus data ini </h5>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn bg-gradient-danger">Delete</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
 <?= $this->endSection(); ?>
